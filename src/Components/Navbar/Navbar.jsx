@@ -29,6 +29,7 @@ const navList_LoginTrue = [
     path: "/",
     fun: () => {
       clearTokensFromLocalStorage();
+      window.location.reload();
     },
   },
 ];
@@ -92,33 +93,13 @@ const Navbar = () => {
                 <Link
                   to={element.path}
                   key={element.item + element.path + index}
-                  onClick={element.fun()}
+                  onClick={element.fun}
                   className="block text-white hover:text-gray-300"
                 >
                   {element.item}
                 </Link>
               </li>
             ))}
-            {/* <li>
-              <Link to="#" className="block text-white hover:text-gray-300">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="block text-white hover:text-gray-300">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="block text-white hover:text-gray-300">
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="block text-white hover:text-gray-300">
-                Contact
-              </Link>
-            </li> */}
           </ul>
         </div>
       )}

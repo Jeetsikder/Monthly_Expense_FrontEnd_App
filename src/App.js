@@ -10,6 +10,7 @@ import { getTokensFromLocalStorage } from "./Utility/SaveGetCleanAccessTokenFrom
 import { useEffect } from "react";
 import { setUserLogin } from "./Features/UserState";
 import NotFound404 from "./Components/NotFound/NotFound404";
+import HomePage from "./Components/Home/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
       <Main>
         <Navbar />
         <Routes>
+          <Route path="/" Component={HomePage}></Route>
           <Route path="/sign-up" Component={SignUpForm}></Route>
           <Route path="/log-in" Component={Login}></Route>
           {/* Login Components */}
