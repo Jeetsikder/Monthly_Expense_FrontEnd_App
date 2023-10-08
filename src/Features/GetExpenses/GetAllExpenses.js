@@ -5,6 +5,7 @@ import { getTokensFromLocalStorage } from "../../Utility/SaveGetCleanAccessToken
 const URL = `${process.env.REACT_APP_BACKEND_HOSTED_ON}${process.env.REACT_APP_BACKEND_END_POINT_GET_ALL_EXPENSES}`;
 
 const { accessToken } = getTokensFromLocalStorage();
+
 // Create a config object for header
 const config = {
   headers: {

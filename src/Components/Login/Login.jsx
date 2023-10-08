@@ -14,7 +14,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { logIn: loginStateLocalStorage } = getTokensFromLocalStorage();
+  const { accessToken: LocalSaveAccessToken } = getTokensFromLocalStorage();
 
   // # Redux state when api call for login
   const login = useSelector((state) => state.login);
@@ -46,17 +46,17 @@ const Login = () => {
   useEffect(() => {
     if (login_statusCode === 200) {
       const { accessToken } = payload;
-      navigate("/dashboard");
-
+      saveTokensToLocalStorage(accessToken, true);
       dispatch(setUserLogin());
-      return saveTokensToLocalStorage(accessToken, true);
     }
+  }, [login_statusCode, payload, dispatch]);
 
-    // # If login true from local storage
-    if (loginStateLocalStorage) {
-      navigate("/dashboard");
+  // # When token save and login status code === 200 then we navigate to dashboard
+  useEffect(() => {
+    if (LocalSaveAccessToken && login_statusCode) {
+      return navigate("/dashboard");
     }
-  }, [login_statusCode, payload, loginStateLocalStorage, navigate, dispatch]);
+  }, [LocalSaveAccessToken, login_statusCode, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
