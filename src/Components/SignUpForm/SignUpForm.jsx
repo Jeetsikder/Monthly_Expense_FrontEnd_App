@@ -11,6 +11,7 @@ const SignUpForm = () => {
 
   // # Redux state for Sign up Api call res
   const signUp_Sate = useSelector((state) => state.signUp);
+  const { loading } = signUp_Sate;
   const signUp_Sate_statusCode = signUp_Sate?.statusCode;
   const signUp_Sate_error = signUp_Sate?.error;
   const signUp_Sate_error_msg = signUp_Sate_error?.msg;
@@ -191,7 +192,7 @@ const SignUpForm = () => {
                 type="submit"
                 className="bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue hover:bg-blue-600"
               >
-                Sign Up
+                {loading ? "Loading" : " Sign Up"}
               </button>
               <br />
               <small className={` text-red-600 text-xs font-semibold`}>
