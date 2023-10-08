@@ -4,19 +4,16 @@ import { getTokensFromLocalStorage } from "../../Utility/SaveGetCleanAccessToken
 
 const URL = `${process.env.REACT_APP_BACKEND_HOSTED_ON}${process.env.REACT_APP_BACKEND_END_POINT_GET_ALL_EXPENSES}`;
 
-const { accessToken } = getTokensFromLocalStorage();
-
-// Create a config object for header
-const config = {
-  headers: {
-    "x-access-token": accessToken,
-  },
-};
+// Create a config object for headerc
 export const GetAllExpense = createAsyncThunk(
   "get/all/expense",
   async (payload, thunkApi) => {
     try {
-      const request = await axios.get(URL, config);
+      const request = await axios.get(URL, {
+        headers: {
+          "x-access-token": getTokensFromLocalStorage().accessToken,
+        },
+      });
       const response = request.data;
 
       return response;

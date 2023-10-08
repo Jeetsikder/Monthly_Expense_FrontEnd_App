@@ -46,7 +46,9 @@ const Navbar = () => {
   return (
     <nav className="bg-blue-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white  font-bold text-lg">Monthly Expense</div>
+        <div className="text-white  font-bold text-lg">
+          <Link to="/">Monthly Expense</Link>
+        </div>
         <div className="hidden sm:block">
           <ul className="space-x-4">
             {navList.map((element, index) => (

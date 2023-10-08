@@ -24,7 +24,6 @@ export default function Dashboard() {
   // # Get all expense
   useEffect(() => {
     if (accessToken) {
-      console.log(accessToken);
       dispatch(GetAllExpense());
     }
   }, [dispatch, addExpenseRes, accessToken]);
