@@ -4,19 +4,15 @@ import { getTokensFromLocalStorage } from "../../Utility/SaveGetCleanAccessToken
 
 const URL = `${process.env.REACT_APP_BACKEND_HOSTED_ON}${process.env.REACT_APP_FILTER_EXPENSE_BY_DATE}`;
 
-// # Create a config object for header
-const { accessToken } = getTokensFromLocalStorage();
-
-const config = {
-  headers: {
-    "x-access-token": accessToken,
-  },
-};
 export const GetdateExpenseRequest = createAsyncThunk(
   "get/date/expense",
   async (payload, thunkApi) => {
     try {
-      const request = await axios.post(URL, payload, config);
+      const request = await axios.post(URL, payload, {
+        headers: {
+          "x-access-token": getTokensFromLocalStorage().accessToken,
+        },
+      });
       const response = request.data;
 
       return response;

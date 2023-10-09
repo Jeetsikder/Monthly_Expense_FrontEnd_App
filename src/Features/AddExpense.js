@@ -3,20 +3,16 @@ import axios from "axios";
 import { getTokensFromLocalStorage } from "../Utility/SaveGetCleanAccessTokenFromLoacl";
 
 const URL = `${process.env.REACT_APP_BACKEND_HOSTED_ON}${process.env.REACT_APP_ADD_EXPENSES}`;
-console.log(URL);
-const { accessToken } = getTokensFromLocalStorage();
-// Create a config object for header
-const config = {
-  headers: {
-    "x-access-token": accessToken,
-  },
-};
 
 export const AddExpenseRequest = createAsyncThunk(
   "add/expense/request",
   async (payload, thunkApi) => {
     try {
-      const request = await axios.post(URL, payload, config);
+      const request = await axios.post(URL, payload, {
+        headers: {
+          "x-access-token": getTokensFromLocalStorage().accessToken,
+        },
+      });
       const response = request.data;
       console.log(response);
       return response;
