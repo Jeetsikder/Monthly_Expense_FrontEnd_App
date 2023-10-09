@@ -34,7 +34,6 @@ export default function ByDate() {
       const payload = {
         startDate: values.startDate,
       };
-      console.log(payload);
       dispatch(GetdateExpenseRequest(payload));
 
       setTimeout(() => {
@@ -59,7 +58,7 @@ export default function ByDate() {
   }, [statusCode, response, response_msg, dispatch]);
 
   return (
-    <div className="max-w-md mx-auto p-4">
+    <div className="max-w-md mx-auto p-4 border rounded-lg shadow-md bg-white">
       <form action="" onSubmit={handleSubmit}>
         <label className="block text-gray-700 font-bold mb-2">
           Start Date:

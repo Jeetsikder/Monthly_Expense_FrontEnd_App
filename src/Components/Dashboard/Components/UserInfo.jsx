@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GetUserProfileRequest } from "../../../Features/GetUserProfile";
 
 export default function UserInfo() {
-  const user = {
-    name: "Jeet Sikder",
-    email: "Demo@gmail.com",
-  };
+  const dispatch = useDispatch();
+
+  // # Call api for get profile info
+  useEffect(() => {
+    dispatch(GetUserProfileRequest());
+  }, [dispatch]);
+
+  // # Get redux state
+  const {
+    response: successRes,
+    error: errorRes,
+    statusCode,
+    loading,
+  } = useSelector((state) => state.GetUserProfile);
+
+  const [getUserName, setGetUserName] = useState("Fetching user name.");
+  const [getUserEmail, setGetUserEmail] = useState("Fetching email.");
+
+  // # Set the values and display
+  useEffect(() => {
+    if (!loading && successRes && statusCode === 200) {
+      const { payload: successResPayload } = successRes;
+      const { name: userName, email: userEmail } = successResPayload;
+      setGetUserName(userName);
+      setGetUserEmail(userEmail);
+    } else {
+      if (loading && errorRes) {
+        const { msg: errorResMsg } = errorRes;
+        setGetUserName(errorResMsg);
+        setGetUserEmail(errorResMsg);
+      }
+    }
+  }, [loading, successRes, statusCode, errorRes]);
+
   return (
     <div className=" h-fit bg-gray-100">
       <div className="container mx-auto py-8">
@@ -14,13 +46,13 @@ export default function UserInfo() {
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Name
             </label>
-            <div className="text-gray-900 text-lg">{user.name}</div>
+            <div className="text-gray-900 text-lg">{getUserName}</div>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Email
             </label>
-            <div className="text-gray-900">{user.email}</div>
+            <div className="text-gray-900">{getUserEmail}</div>
           </div>
         </div>
       </div>

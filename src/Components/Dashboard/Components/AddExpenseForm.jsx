@@ -5,6 +5,10 @@ import {
   AddExpenseRequest,
   setDefaultAddExpenseRequestState,
 } from "../../../Features/AddExpense";
+import FilterExpense from "./MonthlyExpense/FilterExpense";
+import { setGetAllExpenseStateResponsePayload } from "../../../Features/GetExpenses/GetAllExpenses";
+import { setAddFilterNameExpenseState } from "../../../Features/expense_Slice";
+import { useEffect } from "react";
 
 const Expense_TOPIC = [
   "housing",
@@ -49,10 +53,25 @@ export default function AddExpenseForm({ onAddExpense }) {
       },
     });
 
+  useEffect(() => {
+    if (statusCode === 200) {
+      const payload = {
+        data: response?.payload,
+      };
+
+      dispatch(setGetAllExpenseStateResponsePayload(payload));
+      dispatch(
+        setAddFilterNameExpenseState({
+          filterName: successRes,
+        })
+      );
+    }
+  }, [statusCode, response, successRes, dispatch]);
+
   return (
-    <div className="max-w-md mx-auto p-4 pb-7">
-      <h2 className="text-2xl font-semibold mb-4">Add Expense</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="w-full h-fit space-y-3">
+      <form className="mx-auto w-4/5" onSubmit={handleSubmit}>
+        <h2 className="text-2xl font-semibold mb-4">Add Expense</h2>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2">
             Category:
@@ -118,6 +137,10 @@ export default function AddExpenseForm({ onAddExpense }) {
           {statusCode === 200 ? successRes : errorRes}
         </small>
       </form>
+      {/*  Add Filter */}
+      <div>
+        <FilterExpense />
+      </div>
     </div>
   );
 }

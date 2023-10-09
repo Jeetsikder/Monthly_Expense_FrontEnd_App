@@ -5,13 +5,13 @@ import ByMonth from "../../FilterExpense/ByMonth";
 export default function FilterExpense() {
   return (
     <>
-      <section className="p-4 ">
-        <h1 className=" text-lg">Filter Expense</h1>
-        <article className="flex flex-wrap justify-center items-center ">
-          <div className="basis-1/2">
+      <section className=" ">
+        <h1 className=" text-xl font-bold mx-auto w-4/5 ">Filter Expense</h1>
+        <article className="flex flex-wrap justify-around items-center md:space-y-0 space-y-6">
+          <div className="basis-full md:basis-1/3 ">
             <ByDate />
           </div>
-          <div className="basis-1/2">
+          <div className="basis-full md:basis-1/3">
             <ByMonth />
           </div>
         </article>
