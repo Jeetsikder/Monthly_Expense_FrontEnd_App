@@ -8,6 +8,7 @@ import AddExpenseRequestReducer from "../Features/AddExpense";
 import GetMonthExpenseRequestReducer from "../Features/GetExpenses/GetMonthExpense";
 import GetdateExpenseRequestReducer from "../Features/GetExpenses/GetdateExpense";
 import GetUserProfileRequestReducer from "../Features/GetUserProfile";
+import UpdateCurrencyRequestReducer from "../Features/GetExpenses/Update/UpdateCurrency";
 
 export default configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export default configureStore({
     GetMonthExpense: GetMonthExpenseRequestReducer,
     GetdateExpense: GetdateExpenseRequestReducer,
     GetUserProfile: GetUserProfileRequestReducer,
+    UpdateCurrency: UpdateCurrencyRequestReducer,
   },
 });

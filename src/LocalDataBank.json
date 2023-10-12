@@ -1,0 +1,13 @@
+{
+  "currencies_List": [
+    { "code": "USD", "symbol": "&#36;", "name": "US Dollar (USD)" },
+    { "code": "EUR", "symbol": "&euro;", "name": "Euro (EUR)" },
+    { "code": "GBP", "symbol": "&pound;", "name": "British Pound (GBP)" },
+    { "code": "JPY", "symbol": "&yen;", "name": "Japanese Yen (JPY)" },
+    { "code": "AUD", "symbol": "&#36;", "name": "Australian Dollar (AUD)" },
+    { "code": "CAD", "symbol": "&#36;", "name": "Canadian Dollar (CAD)" },
+    { "code": "CHF", "symbol": "&fnof;", "name": "Swiss Franc (CHF)" },
+    { "code": "CNY", "symbol": "&yen;", "name": "Chinese Yuan (CNY)" },
+    { "code": "INR", "symbol": "&#8377;", "name": "Indian Rupee (INR)" }
+  ]
+}

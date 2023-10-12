@@ -1,8 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ExpenseDetails = ({ category, date, amount, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // # Currency symbol
+  const userCurrency =
+    useSelector((state) => state.GetUserProfile).response?.payload?.currency
+      .symbol || "&#36";
 
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -32,11 +38,17 @@ const ExpenseDetails = ({ category, date, amount, index }) => {
           </p>
         </div>
         <div className="flex flex-col justify-end self-start">
-          <p className="text-gray-700 text-lg font-bold">${amount}</p>
+          <p className="text-gray-700 text-lg font-bold">
+            <span dangerouslySetInnerHTML={{ __html: userCurrency }}></span>
+            {"  "}
+            {Number(amount) <= 9 ? "0" + Number(amount) : Number(amount)}
+          </p>
         </div>
       </div>
       <div className={`mt-4 ${isExpanded ? "block" : "hidden"}`}>
-        <p className="text-gray-500 text-sm">Expense details</p>
+        <p className="text-gray-500 text-sm">
+          Expense details not available right now.
+        </p>
       </div>
       <div className="flex flex-row justify-end">
         <button
